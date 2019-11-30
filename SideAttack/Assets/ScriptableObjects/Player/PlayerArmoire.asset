@@ -25,4 +25,4 @@ MonoBehaviour:
   legRight: {fileID: 11400000, guid: aade1a13b4a55414c9fbf9f52ec62400, type: 2}
   bootLeft: {fileID: 11400000, guid: 7fd23f0708db446e38438fe69c1eae31, type: 2}
   bootRight: {fileID: 11400000, guid: 5859e6e7ad2bf433fa269e7c1c2894dd, type: 2}
-  weapon: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 879652c3864f94664beebc9415e7a90d, type: 2}
