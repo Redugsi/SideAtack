@@ -15,11 +15,11 @@ public class InputComponent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log("LEFT CLICKED");
+            OnLeftClicked();
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            Debug.Log("RIGHT CLICKED");
+            OnRightClicked();
         }
     }
 

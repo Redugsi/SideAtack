@@ -1,9 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AttackComponent : MonoBehaviour
+[RequireComponent(typeof(InputComponent))]
+public class AttackComponent : MonoBehaviour, IPlayerAttack
 {
+
+    public WeaponObject weapon;
+
+    private void Awake()
+    {
+        Init();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +20,22 @@ public class AttackComponent : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void Init()
+    {
+        var component = GetComponent<InputComponent>();
+        component.OnLeftClicked += AttackLeft;
+        component.OnRightClicked += AttackRight;
+    }
+
+    public void AttackLeft()
+    {
+        Debug.Log("Left Attack");
+    }
+
+    public void AttackRight()
+    {
+        Debug.Log("Right Attack");
     }
 }
