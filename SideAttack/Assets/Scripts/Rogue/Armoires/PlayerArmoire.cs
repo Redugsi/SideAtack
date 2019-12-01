@@ -12,6 +12,7 @@ public class PlayerArmoire : ScriptableObject
     public WristObject wristLeft;
     public WristObject wristRight;
     public TorsoObject torso;
+    public PelvisObject pelvis;
     public LegObject legLeft;
     public LegObject legRight;
     public BootObject bootLeft;

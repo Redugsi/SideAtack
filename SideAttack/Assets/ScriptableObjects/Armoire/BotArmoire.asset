@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4687ff7bcef4cf6a1c5c897cdd6eb4, type: 3}
+  m_Name: BotArmoire
+  m_EditorClassIdentifier: 
+  face: {fileID: 11400000, guid: 919ae20386f72419d83dc6a67a56b18f, type: 2}
+  hood: {fileID: 11400000, guid: 2b6c289ea32ae4a1b95e0bd787c45230, type: 2}
+  shoulderLeft: {fileID: 11400000, guid: d6a8007e08d9f414c828d480bea2958d, type: 2}
+  shoulderRight: {fileID: 11400000, guid: 7aea852904f5f4abf99df8e300fd99bd, type: 2}
+  elbowLeft: {fileID: 11400000, guid: e128e57ee234748c09a8faafba2dc7a3, type: 2}
+  elbowRight: {fileID: 11400000, guid: 552044033e26e47508969a3059fd16ae, type: 2}
+  wristLeft: {fileID: 11400000, guid: 532899ac72f2645cfaa345227ea303d2, type: 2}
+  wristRight: {fileID: 11400000, guid: ae9db9e0346204e9986b7a053f5021d9, type: 2}
+  torso: {fileID: 11400000, guid: 52e23816a11294b70ab5c7785ab5e7bc, type: 2}
+  pelvis: {fileID: 11400000, guid: 278ea742d933c44e4a3a0b3cb6161b9d, type: 2}
+  legLeft: {fileID: 11400000, guid: 155bfffcfb25f4c569f1df1cf9bd51f3, type: 2}
+  legRight: {fileID: 11400000, guid: 03785f5c20f064f2285f9607ac60c336, type: 2}
+  bootLeft: {fileID: 11400000, guid: ca9e31cb9e40e455d96b1b22740965a4, type: 2}
+  bootRight: {fileID: 11400000, guid: ca9e31cb9e40e455d96b1b22740965a4, type: 2}
+  weapon: {fileID: 11400000, guid: 3d30a0e1d69d943bbb05de644a113648, type: 2}

@@ -14,6 +14,7 @@ public class ArmoireComponent : MonoBehaviour
     public SpriteRenderer shoulderLeft;
     public SpriteRenderer shoulderRight;
     public SpriteRenderer torso;
+    public SpriteRenderer pelvis;
     public SpriteRenderer legLeft;
     public SpriteRenderer legRight;
     public SpriteRenderer bootLeft;
@@ -21,7 +22,7 @@ public class ArmoireComponent : MonoBehaviour
     public SpriteRenderer weaponLeft;
     public SpriteRenderer weaponRight;
 
-    private void Awake()
+    private void Start()
     {
         Wear();
     }
@@ -42,6 +43,7 @@ public class ArmoireComponent : MonoBehaviour
         shoulderLeft.sprite = armoire.shoulderLeft.sprite;
         shoulderRight.sprite = armoire.shoulderRight.sprite;
         torso.sprite = armoire.torso.sprite;
+        pelvis.sprite = armoire.pelvis.sprite;
         legLeft.sprite = armoire.legLeft.sprite;
         legRight.sprite = armoire.legRight.sprite;
         bootLeft.sprite = armoire.bootLeft.sprite;

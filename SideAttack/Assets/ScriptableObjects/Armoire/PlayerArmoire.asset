@@ -21,6 +21,7 @@ MonoBehaviour:
   wristLeft: {fileID: 11400000, guid: 0b6289d3eeeb34b54a196285be746802, type: 2}
   wristRight: {fileID: 11400000, guid: 51bac4ccb21ad4a3faef654b3030de13, type: 2}
   torso: {fileID: 11400000, guid: 0493fbf1285574bd199581149ba01ba9, type: 2}
+  pelvis: {fileID: 11400000, guid: 78485382ac0c94e928de8fa0f7821755, type: 2}
   legLeft: {fileID: 11400000, guid: 67f7c5d89062c44ada517df28696141e, type: 2}
   legRight: {fileID: 11400000, guid: aade1a13b4a55414c9fbf9f52ec62400, type: 2}
   bootLeft: {fileID: 11400000, guid: 7fd23f0708db446e38438fe69c1eae31, type: 2}
