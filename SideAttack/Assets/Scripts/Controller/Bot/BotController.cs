@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BotController : BaseRogueController, ISpawn
 {
-    // Start is called before the first frame update
+    public GameObject roguePrefab;
+    public float spawnCount;
+
     void Start()
     {
         Spawn();

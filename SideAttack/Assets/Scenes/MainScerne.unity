@@ -196,6 +196,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeBetweenSpawnPoints: 10
   spawnOffset: 100
+  roguePrefab: {fileID: 1000010208881502, guid: 039878207723f42dabb5785aefb774cd,
+    type: 3}
 --- !u!4 &631213655
 Transform:
   m_ObjectHideFlags: 0

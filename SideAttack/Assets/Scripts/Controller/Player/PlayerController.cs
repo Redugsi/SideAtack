@@ -5,7 +5,7 @@ public class PlayerController : BaseRogueController, ISpawn
 
     private GameObject owned;
 
-    void Start()
+    void Awake()
     {
         Spawn();
     }
