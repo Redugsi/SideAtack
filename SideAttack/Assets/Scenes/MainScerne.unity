@@ -372,6 +372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1000010208881502, guid: 039878207723f42dabb5785aefb774cd, type: 3}
   armoire: {fileID: 11400000, guid: c27c0dd24f60a47f19e4f6b1427fb4e1, type: 2}
+  bots: {fileID: 11400000, guid: 6fdb3271451c448fa8cdde91c5bee469, type: 2}
+  spawnCount: 10
 --- !u!4 &1651015175
 Transform:
   m_ObjectHideFlags: 0

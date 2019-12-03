@@ -13,7 +13,7 @@ public class World : MonoBehaviour
 
     private void Start()
     {
-        spawner.Spawn(GetPlayerTransform().position);
+        //spawner.Spawn(GetPlayerTransform().position);
     }
 
     public Transform GetPlayerTransform()
