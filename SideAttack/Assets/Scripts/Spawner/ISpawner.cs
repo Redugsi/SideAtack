@@ -2,5 +2,5 @@
 
 public interface ISpawner
 {
-    void Spawn(Vector3 center);
+    void Spawn(Vector3 center, int spawnCount);
 }
