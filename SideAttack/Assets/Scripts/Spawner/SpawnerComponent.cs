@@ -8,7 +8,7 @@ public class SpawnerComponent : MonoBehaviour, ISpawner
     public float spawnOffset = 100f;
     public GameObjectSet enemies;
 
-    public void Spawn(Vector3 center, int spawnCount)
+    public void Spawn(Transform center, int spawnCount)
     {
         int spawnedCount = 0;
         int index = 0;
@@ -19,8 +19,10 @@ public class SpawnerComponent : MonoBehaviour, ISpawner
             
             if (random == 0)
             {
-                var pos = new Vector3((center.x + spawnOffset) + (rangeBetweenSpawnPoints * index), center.y, center.z);
-                         
+                var pos = new Vector3((center.position.x + spawnOffset) + (rangeBetweenSpawnPoints * index), center.position.y, center.position.z);
+                enemies.items[spawnedCount].transform.position = pos;
+                enemies.items[spawnedCount].GetComponent<MovementComponent>().targetTransform = center;
+                enemies.items[spawnedCount].SetActive(true);         
                 spawnedCount++;
             }
 
@@ -28,7 +30,10 @@ public class SpawnerComponent : MonoBehaviour, ISpawner
 
             if (random == 0)
             {
-                Instantiate(roguePrefab, new Vector3((center.x - spawnOffset) - (rangeBetweenSpawnPoints * index), center.y, center.z), Quaternion.identity);
+                var pos = new Vector3((center.position.x - spawnOffset) - (rangeBetweenSpawnPoints * index), center.position.y, center.position.z);
+                enemies.items[spawnedCount].transform.position = pos;
+                enemies.items[spawnedCount].GetComponent<MovementComponent>().targetTransform = center;
+                enemies.items[spawnedCount].SetActive(true);
                 spawnedCount++;
             }
 

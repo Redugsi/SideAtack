@@ -13,7 +13,8 @@ public class World : MonoBehaviour
 
     private void Start()
     {
-        //spawner.Spawn(GetPlayerTransform().position);
+        botController.SpawnBots();
+        spawner.Spawn(playerController.GetOwned().transform, 4);
     }
 
     public Transform GetPlayerTransform()
