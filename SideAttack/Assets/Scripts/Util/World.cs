@@ -11,20 +11,8 @@ public class World : MonoBehaviour
     [SerializeField]
     private SpawnerComponent spawner;
 
-    private void Start()
-    {
-        botController.SpawnBots();
-        spawner.Spawn(playerController.GetOwned().transform, 4);
-    }
+    [SerializeField]
+    private GameComponent game;
 
-    public Transform GetPlayerTransform()
-    {
-        if (playerController == null || playerController.GetOwned() == null)
-        {
-            Debug.Log("NULL");
-            return null;
-        }
-
-        return playerController.GetOwned().transform;
-    }
+    public ScoreObject score;
 }

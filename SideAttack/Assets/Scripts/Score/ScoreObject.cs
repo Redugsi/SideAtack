@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ScoreObject : MonoBehaviour
+[CreateAssetMenu(fileName = "New Score", menuName = "Game/Score")]
+public class ScoreObject : ScriptableObject
 {
-    
+    public int score = 0;
+    public int wave = 1;
 }

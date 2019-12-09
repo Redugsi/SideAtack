@@ -196,8 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeBetweenSpawnPoints: 10
   spawnOffset: 100
-  roguePrefab: {fileID: 1000010208881502, guid: 039878207723f42dabb5785aefb774cd,
-    type: 3}
+  enemies: {fileID: 11400000, guid: 6fdb3271451c448fa8cdde91c5bee469, type: 2}
 --- !u!4 &631213655
 Transform:
   m_ObjectHideFlags: 0
@@ -244,6 +243,7 @@ MonoBehaviour:
   playerController: {fileID: 379098443}
   botController: {fileID: 1651015174}
   spawner: {fileID: 631213654}
+  score: {fileID: 11400000, guid: a14a36d7e6da3476c80bec759d4c7338, type: 2}
 --- !u!4 &686662632
 Transform:
   m_ObjectHideFlags: 0
