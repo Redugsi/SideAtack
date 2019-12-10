@@ -27,15 +27,30 @@ public class GameComponent : MonoBehaviour
 
     private void CheckEnemyCollision()
     {
-        if (botController == null)
+        if (botController == null || playerController == null || playerController.GetOwned() == null)
         {
             return;
         }
 
-        for (int i = 0; i < botController.bots.items.Count; i++)
-        {
+        var playerRogueXPosition = playerController.GetOwned().transform.position.x;
 
+        foreach (var bot in botController.bots.items)
+        {
+            if (!bot.active)
+            {
+                continue;
+            }
+
+            Debug.Log(bot.GetInstanceID() + "");
+
+            var distance = Mathf.Abs(playerRogueXPosition - bot.transform.position.x);
+
+            if(distance <= Constants.ROGUE_COLLISION_WIDTH_IN_UNIT)
+            {
+                Debug.Log("Player Get Killed");
+            }
         }
+
     }
 
     public void SpawnWave()

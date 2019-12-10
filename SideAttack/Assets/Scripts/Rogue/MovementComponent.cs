@@ -2,8 +2,6 @@
 
 public class MovementComponent : MonoBehaviour
 {
-    [SerializeField]
-    private float maxDistance = 6f;
     public Transform targetTransform;
     public float speed = 1f;
     
@@ -16,7 +14,7 @@ public class MovementComponent : MonoBehaviour
 
         float distance = targetTransform.position.x - transform.position.x;
 
-        if(Mathf.Abs(distance) < maxDistance)
+        if(Mathf.Abs(distance) < Constants.ROGUE_WIDTH_IN_UNIT)
         {
             return;
         }

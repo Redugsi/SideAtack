@@ -14,5 +14,4 @@ public class World : MonoBehaviour
     [SerializeField]
     private GameComponent game;
 
-    public ScoreObject score;
 }
