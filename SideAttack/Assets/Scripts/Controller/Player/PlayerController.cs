@@ -4,16 +4,11 @@ public class PlayerController : BaseRogueController, ISpawn
 {
 
     private GameObject owned;
+    private AttackComponent attackComponent;
 
     void Awake()
     {
         Spawn();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Spawn()
@@ -21,12 +16,27 @@ public class PlayerController : BaseRogueController, ISpawn
         owned = Instantiate(prefab) as GameObject;
         owned.GetComponent<ArmoireComponent>().armoire = armoire;
 
-        var attackComponent = owned.AddComponent<AttackComponent>();
+        attackComponent = owned.AddComponent<AttackComponent>();
         attackComponent.weapon = armoire.weapon;
     }
 
     public GameObject GetOwned()
     {
         return owned;
+    }
+
+    public float GetAttackRange()
+    {
+        return attackComponent.weapon.range;
+    }
+
+    public void Attack(Vector3 target)
+    {
+        if (attackComponent == null)
+        {
+            return;
+        }
+
+        attackComponent.Attack(target);
     }
 }

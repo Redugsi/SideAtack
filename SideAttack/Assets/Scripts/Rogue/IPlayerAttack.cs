@@ -1,7 +1,6 @@
-﻿using System;
+﻿using UnityEngine;
 
 public interface IPlayerAttack
 {
-    void AttackLeft();
-    void AttackRight();
+    void Attack(Vector3 position);
 }

@@ -14,6 +14,13 @@ public class GameComponent : MonoBehaviour
 
     public ScoreObject score;
 
+    private void Awake()
+    {
+        var inputComponent = GetComponent<InputComponent>();
+        inputComponent.OnLeftClicked += OnLeftClicked;
+        inputComponent.OnRightClicked += OnRightClicked;
+    }
+
     private void Start()
     {
         botController.SpawnBots();
@@ -41,13 +48,11 @@ public class GameComponent : MonoBehaviour
                 continue;
             }
 
-            Debug.Log(bot.GetInstanceID() + "");
-
             var distance = Mathf.Abs(playerRogueXPosition - bot.transform.position.x);
 
             if(distance <= Constants.ROGUE_COLLISION_WIDTH_IN_UNIT)
             {
-                Debug.Log("Player Get Killed");
+                //Debug.Log("Player Get Killed");
             }
         }
 
@@ -68,4 +73,49 @@ public class GameComponent : MonoBehaviour
         return playerController.GetOwned().transform;
     }
 
+    #region Input
+
+    private void OnLeftClicked()
+    {
+        PlayerAttack(true);
+    }
+
+    private void OnRightClicked()
+    {
+        PlayerAttack(false);
+    }
+
+    private void PlayerAttack(bool left)
+    {
+        if (playerController == null || botController == null)
+        {
+            return;
+        }
+
+
+        var attackRange = playerController.GetAttackRange();
+        var attackPos = new Vector3(left ? playerController.GetOwned().transform.position.x - attackRange
+            : playerController.GetOwned().transform.position.x + attackRange,
+            playerController.GetOwned().transform.position.y,
+                playerController.GetOwned().transform.position.z);
+
+        var nearestBot = botController.GetNearestBotBySide(playerController.GetOwned().transform.position, left);
+
+        if (nearestBot != null)
+        {
+            var distance = Mathf.Abs(playerController.GetOwned().transform.position.x - nearestBot.transform.position.x);
+            
+            if (distance < attackRange)
+            {
+                nearestBot.SetActive(false);
+                Debug.Log("NOT ACTIVE");
+                attackPos = new Vector3(left ? nearestBot.transform.position.x + Constants.ROGUE_COLLISION_WIDTH_IN_UNIT
+                    : nearestBot.transform.position.x - Constants.ROGUE_COLLISION_WIDTH_IN_UNIT,
+                    nearestBot.transform.position.y, nearestBot.transform.position.z);
+            }
+        }
+
+        playerController.Attack(attackPos);
+    }
+    #endregion
 }

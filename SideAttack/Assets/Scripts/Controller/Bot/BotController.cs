@@ -26,4 +26,31 @@ public class BotController : BaseRogueController, ISpawn
             Spawn();
         }
     }
+
+    public GameObject GetNearestBotBySide(Vector3 target, bool left)
+    {
+        GameObject botGo = null;
+        float minDistance = float.MaxValue;
+
+        for (int i = 0; i < bots.items.Count; i++)
+        {
+            var go = bots.items[i];
+
+            if (!go.active)
+            {
+                continue;
+            }
+
+            float distance = Mathf.Abs(go.transform.position.x - target.x);
+
+            if ((left && go.transform.position.x < target.x && distance < minDistance) ||
+                (!left && go.transform.position.x > target.x && distance < minDistance))
+            {
+                botGo = go;
+                minDistance = distance;
+            }
+        }
+
+        return botGo;
+    }
 }
