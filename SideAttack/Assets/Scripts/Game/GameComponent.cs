@@ -104,7 +104,7 @@ public class GameComponent : MonoBehaviour
         if (nearestBot != null)
         {
             var distance = Mathf.Abs(playerController.GetOwned().transform.position.x - nearestBot.transform.position.x);
-            
+            Debug.Log("Distance= " + distance);
             if (distance < attackRange)
             {
                 nearestBot.SetActive(false);
