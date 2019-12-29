@@ -94,8 +94,8 @@ public class GameComponent : MonoBehaviour
 
 
         var attackRange = playerController.GetAttackRange();
-        var attackPos = new Vector3(left ? playerController.GetOwned().transform.position.x - attackRange
-            : playerController.GetOwned().transform.position.x + attackRange,
+        var attackPos = new Vector3(left ? playerController.GetOwned().transform.position.x - (attackRange + Constants.ROGUE_COLLISION_WIDTH_IN_UNIT)
+            : playerController.GetOwned().transform.position.x + (attackRange + Constants.ROGUE_COLLISION_WIDTH_IN_UNIT),
             playerController.GetOwned().transform.position.y,
                 playerController.GetOwned().transform.position.z);
 
@@ -103,12 +103,12 @@ public class GameComponent : MonoBehaviour
 
         if (nearestBot != null)
         {
-            var distance = Mathf.Abs(playerController.GetOwned().transform.position.x - nearestBot.transform.position.x);
-            Debug.Log("Distance= " + distance);
-            if (distance < attackRange)
+            bool isContain = (left && (attackPos.x <= (nearestBot.transform.position.x + Constants.ROGUE_COLLISION_WIDTH_IN_UNIT))) ||
+            (!left && (attackPos.x >= nearestBot.transform.position.x - Constants.ROGUE_COLLISION_WIDTH_IN_UNIT));
+
+            if (isContain)
             {
                 nearestBot.SetActive(false);
-                Debug.Log("NOT ACTIVE");
                 attackPos = new Vector3(left ? nearestBot.transform.position.x + Constants.ROGUE_COLLISION_WIDTH_IN_UNIT
                     : nearestBot.transform.position.x - Constants.ROGUE_COLLISION_WIDTH_IN_UNIT,
                     nearestBot.transform.position.y, nearestBot.transform.position.z);
