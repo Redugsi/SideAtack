@@ -373,6 +373,7 @@ MonoBehaviour:
   prefab: {fileID: 1000010208881502, guid: 039878207723f42dabb5785aefb774cd, type: 3}
   armoire: {fileID: 11400000, guid: c27c0dd24f60a47f19e4f6b1427fb4e1, type: 2}
   bots: {fileID: 11400000, guid: 6fdb3271451c448fa8cdde91c5bee469, type: 2}
+  botDeadEvent: {fileID: 11400000, guid: a0f68b0a507c347ada138cd248efa578, type: 2}
   spawnCount: 20
 --- !u!4 &1651015175
 Transform:
@@ -399,6 +400,7 @@ GameObject:
   - component: {fileID: 1909746094}
   - component: {fileID: 1909746093}
   - component: {fileID: 1909746092}
+  - component: {fileID: 1909746095}
   m_Layer: 0
   m_Name: GameComponent
   m_TagString: Untagged
@@ -448,3 +450,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1909746095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909746091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d86e5843ba5c9433d9b66c40e3eff53b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a0f68b0a507c347ada138cd248efa578, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1909746092}
+        m_MethodName: OnBotDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

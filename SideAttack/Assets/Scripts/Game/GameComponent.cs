@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(InputComponent))]
 public class GameComponent : MonoBehaviour
@@ -11,14 +12,18 @@ public class GameComponent : MonoBehaviour
 
     [SerializeField]
     private SpawnerComponent spawner;
-
     public ScoreObject score;
+
+    public float newWaveDelay = 2;
 
     private void Awake()
     {
         var inputComponent = GetComponent<InputComponent>();
         inputComponent.OnLeftClicked += OnLeftClicked;
         inputComponent.OnRightClicked += OnRightClicked;
+
+        score.score = 0;
+        score.wave = 1;
     }
 
     private void Start()
@@ -108,7 +113,7 @@ public class GameComponent : MonoBehaviour
 
             if (isContain)
             {
-                nearestBot.SetActive(false);
+                botController.Kill(nearestBot);
                 attackPos = new Vector3(left ? nearestBot.transform.position.x + Constants.ROGUE_COLLISION_WIDTH_IN_UNIT
                     : nearestBot.transform.position.x - Constants.ROGUE_COLLISION_WIDTH_IN_UNIT,
                     nearestBot.transform.position.y, nearestBot.transform.position.z);
@@ -118,4 +123,35 @@ public class GameComponent : MonoBehaviour
         playerController.Attack(attackPos);
     }
     #endregion
+
+    private void KillBot(GameObject bot)
+    { 
+        if(bot == null || botController == null)
+        {
+            return;
+        }
+
+        botController.Kill(bot);
+    }
+
+    public void OnBotDead()
+    {
+        score.score += score.wave;
+        score.wave += 1;
+
+        if(botController.AllBotsDead())
+        {
+            StartCoroutine(NewWave());
+        } else 
+        { 
+        
+        }
+    }
+
+    IEnumerator NewWave()
+    {
+        Debug.Log("New wave called");
+        yield return new WaitForSeconds(newWaveDelay);
+        SpawnWave();
+    }
 }

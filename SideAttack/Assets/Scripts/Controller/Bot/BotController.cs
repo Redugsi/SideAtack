@@ -3,6 +3,7 @@
 public class BotController : BaseRogueController, ISpawn
 {
     public GameObjectSet bots;
+    public GameEvent botDeadEvent;
     public float spawnCount;
 
     void Awake()
@@ -52,5 +53,24 @@ public class BotController : BaseRogueController, ISpawn
         }
 
         return botGo;
+    }
+
+    public void Kill(GameObject go)
+    {
+        go.SetActive(false);
+        botDeadEvent.Raise();
+    }
+
+    public bool AllBotsDead()
+    {
+        for(int i = 0; i < bots.items.Count; i++) 
+        { 
+            if (bots.items[i].activeInHierarchy)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

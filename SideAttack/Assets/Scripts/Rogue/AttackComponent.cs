@@ -7,7 +7,6 @@ public class AttackComponent : MonoBehaviour, IPlayerAttack
 
     public void Attack(Vector3 target)
     {
-        Debug.Log("Attack " + target);
         StartCoroutine(Move(target));
     }
 
