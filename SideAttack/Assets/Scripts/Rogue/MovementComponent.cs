@@ -7,8 +7,6 @@ public class MovementComponent : MonoBehaviour
     
     void Update()
     {
-        return;
-
         if(targetTransform == null)
         {
             return;

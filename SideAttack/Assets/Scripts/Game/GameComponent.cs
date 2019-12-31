@@ -58,6 +58,7 @@ public class GameComponent : MonoBehaviour
             if(distance <= Constants.ROGUE_COLLISION_WIDTH_IN_UNIT)
             {
                 //Debug.Log("Player Get Killed");
+                Time.timeScale = 0;
             }
         }
 
