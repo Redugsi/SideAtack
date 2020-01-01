@@ -42,6 +42,6 @@ public class PlayerController : BaseRogueController, ISpawn
 
     public void Die()
     {
-        owned.GetComponent<Animator>().Play("Rogue_death_01", -1, 0f);
+        owned.GetComponent<Animator>().Play("Rogue_death_02", -1, 0f);
     }
 }

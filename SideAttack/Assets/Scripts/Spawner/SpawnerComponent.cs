@@ -4,7 +4,7 @@ public class SpawnerComponent : MonoBehaviour, ISpawner
 {
     public float rangeBetweenSpawnPoints = 10f;
     public float spawnOffset = 100f;
-    public GameObjectSet enemies;
+    public BotRuntimeSet enemies;
 
     public void Spawn(Transform center, int spawnCount, float speed)
     {
@@ -19,10 +19,9 @@ public class SpawnerComponent : MonoBehaviour, ISpawner
             {
                 var pos = new Vector3((center.position.x + spawnOffset) + (rangeBetweenSpawnPoints * index), center.position.y, center.position.z);
                 enemies.items[spawnedCount].transform.position = pos;
+                enemies.items[spawnedCount].SetReady();
                 enemies.items[spawnedCount].GetComponent<MovementComponent>().targetTransform = center;
                 enemies.items[spawnedCount].GetComponent<MovementComponent>().speed = speed;
-                enemies.items[spawnedCount].GetComponent<Animator>().SetTrigger("refresh");
-                enemies.items[spawnedCount].SetActive(true);
                 spawnedCount++;
             }
 
@@ -32,10 +31,9 @@ public class SpawnerComponent : MonoBehaviour, ISpawner
             {
                 var pos = new Vector3((center.position.x - spawnOffset) - (rangeBetweenSpawnPoints * index), center.position.y, center.position.z);
                 enemies.items[spawnedCount].transform.position = pos;
+                enemies.items[spawnedCount].SetReady();
                 enemies.items[spawnedCount].GetComponent<MovementComponent>().targetTransform = center;
                 enemies.items[spawnedCount].GetComponent<MovementComponent>().speed = speed;
-                enemies.items[spawnedCount].GetComponent<Animator>().SetTrigger("refresh");
-                enemies.items[spawnedCount].SetActive(true);
                 spawnedCount++;
             }
 

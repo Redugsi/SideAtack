@@ -68,7 +68,7 @@ public class GameComponent : MonoBehaviour
 
     private void PlayerAttack(bool left)
     {
-        if (playerController == null || botController == null)
+        if (playerController == null || botController == null || isGameOver)
         {
             return;
         }
@@ -99,16 +99,6 @@ public class GameComponent : MonoBehaviour
         playerController.Attack(attackPos);
     }
     #endregion
-
-    private void KillBot(GameObject bot)
-    { 
-        if(bot == null || botController == null)
-        {
-            return;
-        }
-
-        botController.Kill(bot);
-    }
 
     public void OnBotDead()
     {
@@ -141,7 +131,7 @@ public class GameComponent : MonoBehaviour
 
         foreach (var bot in botController.bots.items)
         {
-            if (!bot.activeInHierarchy)
+            if (!bot.gameObject.activeInHierarchy || bot.isDead)
             {
                 continue;
             }
@@ -150,7 +140,7 @@ public class GameComponent : MonoBehaviour
 
             if (distance <= Constants.ROGUE_COLLISION_WIDTH_IN_UNIT)
             {
-                OnBotCollideWithPlayer(bot);
+                OnBotCollideWithPlayer(bot.gameObject);
                 break;
             }
         }

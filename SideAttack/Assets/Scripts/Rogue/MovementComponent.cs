@@ -6,15 +6,17 @@ public class MovementComponent : MonoBehaviour
     public float speed = 1f;
 
     private Animator animator;
+    private Properties properties;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        properties = GetComponent<Properties>();
     }
 
     void Update()
     {
-        if(targetTransform == null)
+        if(targetTransform == null || properties.isDead)
         {
             animator.SetFloat("runSpeed", 0);
             return;

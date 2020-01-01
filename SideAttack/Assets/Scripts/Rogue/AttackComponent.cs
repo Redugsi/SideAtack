@@ -14,6 +14,7 @@ public class AttackComponent : MonoBehaviour, IPlayerAttack
 
     public void Attack(Vector3 target)
     {
+        transform.rotation = Quaternion.Euler(0, target.x > transform.position.x ? 0 : 180, 0);
         animator.Play("Rogue_attack_02", -1, 0f);
         StartCoroutine(Move(target));
     }
