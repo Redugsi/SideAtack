@@ -16,7 +16,7 @@ public class GameComponent : MonoBehaviour
 
     public float newWaveDelay = 2;
 
-    private bool isGameOver = false;
+    public bool isGameOver = false;
 
     private void Awake()
     {

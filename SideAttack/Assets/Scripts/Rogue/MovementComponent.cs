@@ -7,16 +7,18 @@ public class MovementComponent : MonoBehaviour
 
     private Animator animator;
     private Properties properties;
+    private GameComponent gameComponent;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         properties = GetComponent<Properties>();
+        gameComponent = GameObject.Find("GameComponent").GetComponent<GameComponent>();
     }
 
     void Update()
     {
-        if(targetTransform == null || properties.isDead)
+        if(targetTransform == null || properties.isDead || gameComponent.isGameOver)
         {
             animator.SetFloat("runSpeed", 0);
             return;

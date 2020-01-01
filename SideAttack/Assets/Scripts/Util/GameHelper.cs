@@ -4,12 +4,13 @@ public class GameHelper
 {
     private static float speedOffset = 5;
     private static int levelLoop = 5;
+    private static int levelLoopForSpeed = 3;
     private static int enemyStartCount = 4;
     private static int addedEnemyCount = 2;
 
     public static float GetSpeed(int wave)
     {
-        return speedOffset + ((float)wave / levelLoop);
+        return speedOffset + ((float)wave / levelLoopForSpeed);
     }
 
     public static int GetEnemyCount(int wave)
