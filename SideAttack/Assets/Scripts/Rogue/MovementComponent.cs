@@ -4,11 +4,19 @@ public class MovementComponent : MonoBehaviour
 {
     public Transform targetTransform;
     public float speed = 1f;
-    
+
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
         if(targetTransform == null)
         {
+            animator.SetFloat("runSpeed", 0);
             return;
         }
 
@@ -16,9 +24,11 @@ public class MovementComponent : MonoBehaviour
 
         if(Mathf.Abs(distance) < Constants.ROGUE_WIDTH_IN_UNIT)
         {
+            animator.SetFloat("runSpeed", 0);
             return;
         }
 
+        animator.SetFloat("runSpeed", 1);
         float step = speed * Time.deltaTime;
         transform.rotation = Quaternion.Euler(0, distance > 0 ? 0 : 180, 0);
         transform.position = Vector2.MoveTowards(transform.position, targetTransform.position, step);

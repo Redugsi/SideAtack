@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class BotController : BaseRogueController, ISpawn
 {
     public GameObjectSet bots;
     public GameEvent botDeadEvent;
     public float spawnCount;
+    private float activationTime = 1.5f;
 
     void Awake()
     {
@@ -57,8 +59,15 @@ public class BotController : BaseRogueController, ISpawn
 
     public void Kill(GameObject go)
     {
-        go.SetActive(false);
+        go.GetComponent<Animator>().Play("Rogue_death_01", -1, 0f);
+        StartCoroutine(DeactiveAfterDelay(go));
         botDeadEvent.Raise();
+    }
+
+    private IEnumerator DeactiveAfterDelay(GameObject go)
+    {
+        yield return new WaitForSeconds(activationTime);
+        go.SetActive(false);
     }
 
     public bool AllBotsDead()

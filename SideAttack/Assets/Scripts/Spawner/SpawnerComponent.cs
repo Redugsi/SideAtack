@@ -21,7 +21,8 @@ public class SpawnerComponent : MonoBehaviour, ISpawner
                 enemies.items[spawnedCount].transform.position = pos;
                 enemies.items[spawnedCount].GetComponent<MovementComponent>().targetTransform = center;
                 enemies.items[spawnedCount].GetComponent<MovementComponent>().speed = speed;
-                enemies.items[spawnedCount].SetActive(true);         
+                enemies.items[spawnedCount].GetComponent<Animator>().SetTrigger("refresh");
+                enemies.items[spawnedCount].SetActive(true);
                 spawnedCount++;
             }
 
@@ -33,6 +34,7 @@ public class SpawnerComponent : MonoBehaviour, ISpawner
                 enemies.items[spawnedCount].transform.position = pos;
                 enemies.items[spawnedCount].GetComponent<MovementComponent>().targetTransform = center;
                 enemies.items[spawnedCount].GetComponent<MovementComponent>().speed = speed;
+                enemies.items[spawnedCount].GetComponent<Animator>().SetTrigger("refresh");
                 enemies.items[spawnedCount].SetActive(true);
                 spawnedCount++;
             }

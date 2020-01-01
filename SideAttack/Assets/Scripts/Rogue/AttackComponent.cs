@@ -4,9 +4,17 @@ using UnityEngine;
 public class AttackComponent : MonoBehaviour, IPlayerAttack
 {
     public WeaponObject weapon;
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        animator.SetFloat("weaponSpeed", 1 / weapon.speed);
+    }
 
     public void Attack(Vector3 target)
     {
+        animator.Play("Rogue_attack_02", -1, 0f);
         StartCoroutine(Move(target));
     }
 

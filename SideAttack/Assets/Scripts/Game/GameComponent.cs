@@ -16,6 +16,8 @@ public class GameComponent : MonoBehaviour
 
     public float newWaveDelay = 2;
 
+    private bool isGameOver = false;
+
     private void Awake()
     {
         var inputComponent = GetComponent<InputComponent>();
@@ -35,33 +37,6 @@ public class GameComponent : MonoBehaviour
     private void Update()
     {
         CheckEnemyCollision();
-    }
-
-    private void CheckEnemyCollision()
-    {
-        if (botController == null || playerController == null || playerController.GetOwned() == null)
-        {
-            return;
-        }
-
-        var playerRogueXPosition = playerController.GetOwned().transform.position.x;
-
-        foreach (var bot in botController.bots.items)
-        {
-            if (!bot.active)
-            {
-                continue;
-            }
-
-            var distance = Mathf.Abs(playerRogueXPosition - bot.transform.position.x);
-
-            if(distance <= Constants.ROGUE_COLLISION_WIDTH_IN_UNIT)
-            {
-                //Debug.Log("Player Get Killed");
-                Time.timeScale = 0;
-            }
-        }
-
     }
 
     public void SpawnWave()
@@ -143,9 +118,6 @@ public class GameComponent : MonoBehaviour
         if(botController.AllBotsDead())
         {
             StartCoroutine(NewWave());
-        } else 
-        { 
-        
         }
     }
 
@@ -155,4 +127,54 @@ public class GameComponent : MonoBehaviour
         yield return new WaitForSeconds(newWaveDelay);
         SpawnWave();
     }
+
+    #region Collision
+
+    private void CheckEnemyCollision()
+    {
+        if (botController == null || playerController == null || playerController.GetOwned() == null || isGameOver)
+        {
+            return;
+        }
+
+        var playerRogueXPosition = playerController.GetOwned().transform.position.x;
+
+        foreach (var bot in botController.bots.items)
+        {
+            if (!bot.activeInHierarchy)
+            {
+                continue;
+            }
+
+            var distance = Mathf.Abs(playerRogueXPosition - bot.transform.position.x);
+
+            if (distance <= Constants.ROGUE_COLLISION_WIDTH_IN_UNIT)
+            {
+                OnBotCollideWithPlayer(bot);
+                break;
+            }
+        }
+
+    }
+
+    private void OnBotCollideWithPlayer(GameObject bot)
+    {
+        bot.GetComponent<Animator>().Play("Rogue_attack_01", -1, 0f);
+        OnPlayerDie();
+    }
+
+    private void OnPlayerDie()
+    {
+        isGameOver = true;
+
+        if(playerController == null || playerController.GetOwned() == null)
+        {
+            return;
+        }
+
+
+        playerController.Die();
+    }
+
+    #endregion
 }
