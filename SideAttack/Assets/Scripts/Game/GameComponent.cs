@@ -14,6 +14,8 @@ public class GameComponent : MonoBehaviour
     private SpawnerComponent spawner;
     public ScoreObject score;
 
+    public GameEvent missAttackEvent;
+
     public float newWaveDelay = 2;
 
     public bool isGameOver = false;
@@ -121,6 +123,7 @@ public class GameComponent : MonoBehaviour
 
     IEnumerator BlockAttack()
     {
+        missAttackEvent.Raise();
         didAttackMiss = true;
         yield return new WaitForSeconds(attackBlockDuration);
         didAttackMiss = false;

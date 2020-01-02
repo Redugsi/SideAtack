@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeBetweenSpawnPoints: 10
-  spawnOffset: 200
+  spawnOffset: 40
   enemies: {fileID: 11400000, guid: 8f02fdd15f5134a89b52b969adb71234, type: 2}
 --- !u!4 &631213655
 Transform:
@@ -426,6 +426,7 @@ MonoBehaviour:
   score: {fileID: 11400000, guid: a14a36d7e6da3476c80bec759d4c7338, type: 2}
   newWaveDelay: 2
   isGameOver: 0
+  attackBlockDuration: 1
 --- !u!114 &1909746093
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,7 +17,6 @@ public class GameHelper
     public static int GetEnemyCount(int wave)
     {
         int level = wave / levelLoop;
-        Debug.Log("Level = " + level + " wave" + wave);
         int enemyCount = enemyStartCount + (level * addedEnemyCount);
         return enemyCount;
     }
