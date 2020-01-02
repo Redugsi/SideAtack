@@ -1,8 +1,9 @@
 ﻿using System;
+using UnityEngine;
 
 public class GameHelper
 {
-    private static float speedOffset = 5;
+    private static float speedOffset = 7;
     private static int levelLoop = 5;
     private static int levelLoopForSpeed = 3;
     private static int enemyStartCount = 4;
@@ -16,6 +17,7 @@ public class GameHelper
     public static int GetEnemyCount(int wave)
     {
         int level = wave / levelLoop;
+        Debug.Log("Level = " + level + " wave" + wave);
         int enemyCount = enemyStartCount + (level * addedEnemyCount);
         return enemyCount;
     }

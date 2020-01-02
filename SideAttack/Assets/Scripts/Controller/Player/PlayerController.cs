@@ -5,6 +5,7 @@ public class PlayerController : BaseRogueController, ISpawn
 
     private GameObject owned;
     private AttackComponent attackComponent;
+    private Animator animator;
 
     void Awake()
     {
@@ -18,6 +19,9 @@ public class PlayerController : BaseRogueController, ISpawn
 
         attackComponent = owned.AddComponent<AttackComponent>();
         attackComponent.weapon = armoire.weapon;
+
+        animator = owned.GetComponent<Animator>();
+
     }
 
     public GameObject GetOwned()
@@ -30,18 +34,18 @@ public class PlayerController : BaseRogueController, ISpawn
         return attackComponent.weapon.range;
     }
 
-    public void Attack(Vector3 target)
+    public void Attack(Vector3 target, bool miss = false)
     {
         if (attackComponent == null)
         {
             return;
         }
-
+        animator.SetBool("miss", miss);
         attackComponent.Attack(target);
     }
 
     public void Die()
     {
-        owned.GetComponent<Animator>().Play("Rogue_death_02", -1, 0f);
+        animator.Play("Rogue_death_02", -1, 0f);
     }
 }

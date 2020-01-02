@@ -17,6 +17,8 @@ public class GameComponent : MonoBehaviour
     public float newWaveDelay = 2;
 
     public bool isGameOver = false;
+    private bool didAttackMiss = false;
+    public float attackBlockDuration = 1f;
 
     private void Awake()
     {
@@ -25,7 +27,7 @@ public class GameComponent : MonoBehaviour
         inputComponent.OnRightClicked += OnRightClicked;
 
         score.score = 0;
-        score.wave = 1;
+        score.wave = 0;
     }
 
     private void Start()
@@ -41,6 +43,7 @@ public class GameComponent : MonoBehaviour
 
     public void SpawnWave()
     {
+        score.wave += 1;
         spawner.Spawn(playerController.GetOwned().transform, GameHelper.GetEnemyCount(score.wave), GameHelper.GetSpeed(score.wave));
     }
 
@@ -54,7 +57,7 @@ public class GameComponent : MonoBehaviour
         return playerController.GetOwned().transform;
     }
 
-    #region Input
+    #region GameComponent Input
 
     private void OnLeftClicked()
     {
@@ -68,11 +71,12 @@ public class GameComponent : MonoBehaviour
 
     private void PlayerAttack(bool left)
     {
-        if (playerController == null || botController == null || isGameOver)
+        if (playerController == null || botController == null || isGameOver || didAttackMiss)
         {
             return;
         }
 
+        bool didMiss = false;
 
         var attackRange = playerController.GetAttackRange();
         var attackPos = new Vector3(left ? playerController.GetOwned().transform.position.x - (attackRange + Constants.ROGUE_COLLISION_WIDTH_IN_UNIT)
@@ -93,17 +97,40 @@ public class GameComponent : MonoBehaviour
                 attackPos = new Vector3(left ? nearestBot.transform.position.x + Constants.ROGUE_COLLISION_WIDTH_IN_UNIT
                     : nearestBot.transform.position.x - Constants.ROGUE_COLLISION_WIDTH_IN_UNIT,
                     nearestBot.transform.position.y, nearestBot.transform.position.z);
+            } else
+            {
+                didMiss = true;
             }
+        } else 
+        {
+            didMiss = true;
         }
 
-        playerController.Attack(attackPos);
+        Attack(attackPos, didMiss);
     }
+
+    private void Attack(Vector3 target, bool didMiss)
+    {
+        if(didMiss && !didAttackMiss)
+        {
+            StartCoroutine(BlockAttack());
+        }
+
+        playerController.Attack(target, didMiss);
+    }
+
+    IEnumerator BlockAttack()
+    {
+        didAttackMiss = true;
+        yield return new WaitForSeconds(attackBlockDuration);
+        didAttackMiss = false;
+    }
+
     #endregion
 
     public void OnBotDead()
     {
         score.score += score.wave;
-        score.wave += 1;
 
         if(botController.AllBotsDead())
         {

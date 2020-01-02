@@ -11,6 +11,8 @@ public class SpawnerComponent : MonoBehaviour, ISpawner
         int spawnedCount = 0;
         int index = 0;
 
+        Debug.Log(spawnCount);
+
         while (spawnedCount < spawnCount)
         {
             var random = Random.Range(0, 2);

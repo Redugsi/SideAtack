@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeBetweenSpawnPoints: 10
-  spawnOffset: 10
-  enemies: {fileID: 11400000, guid: 6fdb3271451c448fa8cdde91c5bee469, type: 2}
+  spawnOffset: 200
+  enemies: {fileID: 11400000, guid: 8f02fdd15f5134a89b52b969adb71234, type: 2}
 --- !u!4 &631213655
 Transform:
   m_ObjectHideFlags: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1000010208881502, guid: 039878207723f42dabb5785aefb774cd, type: 3}
   armoire: {fileID: 11400000, guid: c27c0dd24f60a47f19e4f6b1427fb4e1, type: 2}
-  bots: {fileID: 11400000, guid: 6fdb3271451c448fa8cdde91c5bee469, type: 2}
+  bots: {fileID: 11400000, guid: 8f02fdd15f5134a89b52b969adb71234, type: 2}
   botDeadEvent: {fileID: 11400000, guid: a0f68b0a507c347ada138cd248efa578, type: 2}
   spawnCount: 20
 --- !u!4 &1651015175
@@ -424,6 +424,8 @@ MonoBehaviour:
   botController: {fileID: 1651015174}
   spawner: {fileID: 631213654}
   score: {fileID: 11400000, guid: a14a36d7e6da3476c80bec759d4c7338, type: 2}
+  newWaveDelay: 2
+  isGameOver: 0
 --- !u!114 &1909746093
 MonoBehaviour:
   m_ObjectHideFlags: 0
