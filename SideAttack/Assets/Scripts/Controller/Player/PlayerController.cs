@@ -22,6 +22,8 @@ public class PlayerController : BaseRogueController, ISpawn
 
         animator = owned.GetComponent<Animator>();
 
+        CameraFollowComponent cameraFollowComponent = Camera.main.gameObject.AddComponent<CameraFollowComponent>();
+        cameraFollowComponent.target = owned.transform;
     }
 
     public GameObject GetOwned()

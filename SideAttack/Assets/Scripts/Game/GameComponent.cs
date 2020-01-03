@@ -143,7 +143,6 @@ public class GameComponent : MonoBehaviour
 
     IEnumerator NewWave()
     {
-        Debug.Log("New wave called");
         yield return new WaitForSeconds(newWaveDelay);
         SpawnWave();
     }

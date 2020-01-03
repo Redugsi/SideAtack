@@ -10,8 +10,7 @@ public class SpawnerComponent : MonoBehaviour, ISpawner
     {
         int spawnedCount = 0;
         int index = 0;
-
-        Debug.Log(spawnCount);
+        spawnCount = Mathf.Clamp(spawnCount, 1, enemies.items.Count);
 
         while (spawnedCount < spawnCount)
         {
