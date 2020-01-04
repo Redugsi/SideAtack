@@ -15,5 +15,6 @@ MonoBehaviour:
   name: Sword Breaker
   description: Basic Dagger
   sprite: {fileID: 21300000, guid: 37e05d8dcd5e386498e75d924efbc7c1, type: 3}
+  previewSprite: {fileID: 21300000, guid: 673504ea4e4f240aba78bcfd2ac864ed, type: 3}
   speed: 0.2
   range: 8

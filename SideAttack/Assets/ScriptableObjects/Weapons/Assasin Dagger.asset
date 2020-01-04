@@ -15,5 +15,6 @@ MonoBehaviour:
   name: Assasin Dagger
   description: Basic Dagger
   sprite: {fileID: 21300000, guid: 0a4a3c212d77eb243aeaac660261fb0f, type: 3}
+  previewSprite: {fileID: 21300000, guid: e6ba2e61e335d467fbfcae14b7b738d3, type: 3}
   speed: 0.2
   range: 2.2

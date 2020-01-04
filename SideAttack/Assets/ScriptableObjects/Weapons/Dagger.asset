@@ -15,5 +15,6 @@ MonoBehaviour:
   name: Dagger
   description: Basic Dagger
   sprite: {fileID: 21300000, guid: f8d916881a19b7a4a99ec74753414a40, type: 3}
+  previewSprite: {fileID: 21300000, guid: 968db1a832af9453dbcad279ab5e4848, type: 3}
   speed: 0.2
   range: 2

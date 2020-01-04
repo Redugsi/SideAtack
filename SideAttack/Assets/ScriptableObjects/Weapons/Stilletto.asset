@@ -15,5 +15,6 @@ MonoBehaviour:
   name: Stilletto
   description: Basic Dagger
   sprite: {fileID: 21300000, guid: 8923765c279ee0241afd55ff5dc53f92, type: 3}
+  previewSprite: {fileID: 21300000, guid: 1edcd9e2337b44ea88ed024f8538c5b2, type: 3}
   speed: 0.2
   range: 2.6
