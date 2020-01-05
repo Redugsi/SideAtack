@@ -18,3 +18,7 @@ MonoBehaviour:
   previewSprite: {fileID: 21300000, guid: f1a58b93fbd4d47a8adf359cf1bd8c33, type: 3}
   speed: 0.2
   range: 2.8
+  killBonus: 8
+  price: 8000
+  bought: 1
+  selected: 1

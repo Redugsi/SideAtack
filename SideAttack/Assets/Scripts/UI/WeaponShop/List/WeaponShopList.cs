@@ -8,6 +8,10 @@ public class WeaponShopList : MonoBehaviour
     public GameObject itemPrefab;
     public RectTransform rectTransform;
     public ScrollRect scrollRect;
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
     // Start is called before the first frame update
     void Start()
     {
