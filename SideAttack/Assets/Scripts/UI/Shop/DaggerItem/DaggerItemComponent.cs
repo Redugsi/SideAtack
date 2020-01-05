@@ -18,6 +18,8 @@ public class DaggerItemComponent : MonoBehaviour
     public Text boughtText;
     public Text buyText;
 
+    public Button buyButton;
+
     void Start()
     {
         Init();

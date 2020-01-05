@@ -1004,7 +1004,7 @@ GameObject:
   - component: {fileID: 3993833613458138674}
   - component: {fileID: 3993833613458138703}
   m_Layer: 5
-  m_Name: Item
+  m_Name: DaggerItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1030,7 +1030,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 645.0363, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3993833613458138672
 MonoBehaviour:
@@ -1103,6 +1103,7 @@ MonoBehaviour:
   killBonusValue: {fileID: 3993833613708546141}
   boughtText: {fileID: 3993833612500476654}
   buyText: {fileID: 3993833613072590561}
+  buyButton: {fileID: 3993833613519731917}
 --- !u!1 &3993833613519731919
 GameObject:
   m_ObjectHideFlags: 0
