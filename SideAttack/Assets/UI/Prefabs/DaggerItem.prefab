@@ -1094,6 +1094,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f30b6f347aa4e8f9c109b1a24d3f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogPrefab: {fileID: 5472613143879136375, guid: a5d7b060ce1c446b9af8aa9ac7a82f83,
+    type: 3}
   weapon: {fileID: 0}
   boughtView: {fileID: 3993833613218251741}
   buyView: {fileID: 3993833613248833428}
@@ -1104,6 +1106,7 @@ MonoBehaviour:
   boughtText: {fileID: 3993833612500476654}
   buyText: {fileID: 3993833613072590561}
   buyButton: {fileID: 3993833613519731917}
+  OnBoughtDagger: {fileID: 11400000, guid: cebd38d017610424c93dc0797313b7ba, type: 2}
 --- !u!1 &3993833613519731919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1224,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3993833613519731916}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3993833613458138703}
+        m_MethodName: BuyAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3993833613708546143
 GameObject:
   m_ObjectHideFlags: 0

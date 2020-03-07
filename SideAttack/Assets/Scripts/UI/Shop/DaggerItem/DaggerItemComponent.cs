@@ -2,12 +2,13 @@
 using UnityEngine;
 using System;
 
-public class DaggerItemComponent : MonoBehaviour
+public class DaggerItemComponent : MonoBehaviour, IDialogDelegate
 {
     private DaggerShopStatus status;
 
-    public WeaponObject weapon;
+    public GameObject dialogPrefab;
 
+    public WeaponObject weapon;
     public GameObject boughtView;
     public GameObject buyView;
 
@@ -20,12 +21,14 @@ public class DaggerItemComponent : MonoBehaviour
 
     public Button buyButton;
 
+    public GameEvent OnBoughtDagger;
+
     void Start()
     {
         Init();
     }
 
-    private void Init()
+    public void Init()
     {
         if(weapon == null) {
             throw new Exception("Wapon object not set");
@@ -81,7 +84,74 @@ public class DaggerItemComponent : MonoBehaviour
     }
 
     public void BuyAction()
-    { 
-    
+    {
+        if(status == DaggerShopStatus.BUY) 
+        {
+            ShowBuyDialog();
+        } else if (status == DaggerShopStatus.SELECT)
+        {
+            ShowSelectDialog();
+        }
+    }
+
+    private void ShowBuyDialog()
+    {
+        var canvas = GameObject.Find("Canvas") as GameObject;
+        var dialog = Instantiate(dialogPrefab, canvas.transform) as GameObject;
+        var dialogComponent = dialog.GetComponent<DialogComponent>();
+        dialogComponent.dialogDelegate = this;
+
+        if (CanBuy()) 
+        {
+            dialogComponent.titleLabel.text = "Are you sure?";
+        } else 
+        {
+            dialogComponent.titleLabel.text = "Not enough coin";
+            dialogComponent.noButton.GetComponentInChildren<Text>().text = "OK";
+            dialogComponent.yesButton.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowSelectDialog()
+    {
+        var canvas = GameObject.Find("Canvas") as GameObject;
+        var dialog = Instantiate(dialogPrefab, canvas.transform) as GameObject;
+        var dialogComponent = dialog.GetComponent<DialogComponent>();
+        dialogComponent.dialogDelegate = this;
+
+        dialogComponent.titleLabel.text = "Are you sure?";
+        dialogComponent.yesButton.GetComponentInChildren<Text>().text = "Select";
+        dialogComponent.noButton.GetComponentInChildren<Text>().text = "Cancel";
+    }
+
+    private bool CanBuy()
+    {
+        return PrefsManager.instance.GetCoin() >= weapon.price;
+    }
+
+    public void Accepted()
+    {
+        if (status == DaggerShopStatus.BUY) {
+            if (CanBuy())
+            {
+                if (OnBoughtDagger != null)
+                {
+                    PrefsManager.instance.AddCoin(weapon.price * -1);
+                    PrefsManager.instance.AddBoughtDagger(weapon.name);
+                    PrefsManager.instance.SetSelectedDaggerName(weapon.name);
+                    OnBoughtDagger.Raise();
+                }
+            }
+        }else if(status == DaggerShopStatus.SELECT)
+        {
+            PrefsManager.instance.SetSelectedDaggerName(weapon.name);
+            OnBoughtDagger.Raise();
+        }
+
+    }
+
+    public void Declined()
+    {
+       // throw new NotImplementedException();
     }
 }

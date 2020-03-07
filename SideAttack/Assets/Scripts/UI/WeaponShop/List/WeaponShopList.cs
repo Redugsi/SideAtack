@@ -21,28 +21,45 @@ public class WeaponShopList : MonoBehaviour
 
     private void Init()
     {
+        LoadData();
+    }
+
+    public void Reload()
+    {
+
+        UpdateData();
+
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            var daggerComp = transform.GetChild(i).GetComponent<DaggerItemComponent>();
+            daggerComp.Init();
+        }
+    }
+
+    private void UpdateData()
+    {
         if (shopListObject == null)
         {
             throw new System.Exception("ShopListObject not set");
         }
 
-        var selectedWeaponIndex = 0;
+        var selectedWeaponName = PrefsManager.instance.GetSelectedDaggerName();
+        var boughtWeapons = PrefsManager.instance.GetBoughtDaggers();
 
         for (int i = 0; i < shopListObject.weaponList.Length; i++)
         {
             var weapon = shopListObject.weaponList[i];
+            weapon.selected = weapon.name == selectedWeaponName;
+            weapon.bought = false;
 
-            if(weapon.selected)
+            for (int j = 0; j < boughtWeapons.Length; j++)
             {
-                selectedWeaponIndex = i;
+                if (weapon.name == boughtWeapons[j])
+                {
+                    weapon.bought = true;
+                }
             }
-
-            var go = Instantiate(itemPrefab) as GameObject;
-            go.GetComponent<DaggerItemComponent>().weapon = weapon;
-            go.transform.SetParent(transform);
         }
-
-        StartCoroutine(CalculateContentSize(selectedWeaponIndex));
     }
 
     private IEnumerator CalculateContentSize(int scrollTo)
@@ -72,5 +89,43 @@ public class WeaponShopList : MonoBehaviour
 
         mineRect.sizeDelta = new Vector2(sizeDeltaX, mineRect.sizeDelta.y);
         scrollRect.horizontalNormalizedPosition = horizontalScrollPosition;
+    }
+
+    private void LoadData() 
+    {
+        if (shopListObject == null)
+        {
+            throw new System.Exception("ShopListObject not set");
+        }
+
+        var selectedWeaponIndex = 0;
+        var selectedWeaponName = PrefsManager.instance.GetSelectedDaggerName();
+        var boughtWeapons = PrefsManager.instance.GetBoughtDaggers();
+
+        for (int i = 0; i < shopListObject.weaponList.Length; i++)
+        {
+            var weapon = shopListObject.weaponList[i];
+            weapon.selected = weapon.name == selectedWeaponName;
+            weapon.bought = false;
+
+            for (int j = 0; j < boughtWeapons.Length; j++)
+            {
+                if (weapon.name == boughtWeapons[j]) 
+                {
+                    weapon.bought = true;
+                }
+            }
+
+            if (weapon.selected)
+            {
+                selectedWeaponIndex = i;
+            }
+
+            var go = Instantiate(itemPrefab) as GameObject;
+            go.GetComponent<DaggerItemComponent>().weapon = weapon;
+            go.transform.SetParent(transform);
+        }
+
+        StartCoroutine(CalculateContentSize(selectedWeaponIndex));
     }
 }
