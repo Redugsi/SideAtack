@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PrefsManager : MonoBehaviour
 {
     private const int STARTER_ENERGY = 25;
     private const int STARTER_COIN = 0;
+    private const int ADDABLE_ENERGY_COUNT = 5;
+    private const long ENERGY_INTERVAL = 24 * 60;
     public static PrefsManager instance;
 
     private void Awake()
@@ -38,7 +41,7 @@ public class PrefsManager : MonoBehaviour
 
     #region Energy Operations
 
-    public void AddEnergy(int value) 
+    public void AddEnergy(int value = ADDABLE_ENERGY_COUNT) 
     {
         int currentEnergy = GetEnergy();
         SetEnergy(currentEnergy + value);
@@ -53,6 +56,21 @@ public class PrefsManager : MonoBehaviour
     public int GetEnergy()
     {
         return PlayerPrefs.GetInt("energy", STARTER_ENERGY);
+    }
+
+    public void SetLastAddedEnergyTime()
+    {
+        long currentTicks = DateTime.Now.Ticks;
+        PlayerPrefsX.SetLong("last_added_energy", currentTicks);
+        PlayerPrefs.Save();
+    }
+
+    public bool CanAddNewEnergyBlock() {
+        long currentTicks = DateTime.Now.Ticks;
+        long lastEditEnergyTick = PlayerPrefsX.GetLong("last_added_energy", currentTicks);
+        long elapsedTicks = currentTicks - lastEditEnergyTick;
+
+        return elapsedTicks >= ENERGY_INTERVAL;
     }
 
     #endregion
