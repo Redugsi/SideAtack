@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenuScene.unity
+    path: Assets/Scenes/Dagger_Shop_Scene.unity
     guid: 3c46967a447e4411fb24094791f4587e
   m_configObjects: {}
